@@ -10,9 +10,9 @@
 - Works alongside any TV, YouTube, Netflix or streaming app (it does not control other apps)
 
 ## Links
-- [Home and FAQ](https://giacantaro001.github.io/onemorecartoon/): what the app does, how it works, answers to common questions
+- [Home and FAQ](https://onemorecartoon.com/): what the app does, how it works, answers to common questions
 - [App Store](https://apps.apple.com/app/id6832581744): download for iPhone and iPad
-- [Parent guide: how to end screen time without tantrums](https://giacantaro001.github.io/onemorecartoon/end-screen-time-without-tantrums.html)
-- [Support](https://giacantaro001.github.io/onemorecartoon/support.html): free trial, restoring purchases, refunds
-- [Privacy policy](https://giacantaro001.github.io/onemorecartoon/privacy.html)
+- [Parent guide: how to end screen time without tantrums](https://onemorecartoon.com/end-screen-time-without-tantrums.html)
+- [Support](https://onemorecartoon.com/support.html): free trial, restoring purchases, refunds
+- [Privacy policy](https://onemorecartoon.com/privacy.html)
 - Contact: smallpeak001@gmail.com
