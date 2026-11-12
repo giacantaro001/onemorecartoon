@@ -1,0 +1,18 @@
+# One More Cartoon!
+
+> One More Cartoon! is an iPhone and iPad app (Android coming soon) that helps parents end children's screen time without tantrums. It counts down in cartoons instead of minutes, warns before the last cartoon with a cheerful voice (optionally using the child's name or the parent's own recorded voice), then announces what comes next: bath, bedtime, dinner, going outside or a custom message.
+
+- Audience: parents of toddlers and young children (about 2–7 years old)
+- Price: free download, every feature free for 30 days, then a one-time purchase to unlock forever (£1.89 / $1.99 / €1.99). No subscription, no ads.
+- Privacy: no accounts, no analytics, no tracking; everything stays on the device.
+- Languages: English (UK, US), Italian, Spanish, French, German, Portuguese (Brazil), Dutch, Polish, Chinese, Japanese
+- Platforms: iPhone and iPad (iOS 15+); Android in testing on Google Play
+- Works alongside any TV, YouTube, Netflix or streaming app (it does not control other apps)
+
+## Links
+- [Home and FAQ](https://giacantaro001.github.io/onemorecartoon/): what the app does, how it works, answers to common questions
+- [App Store](https://apps.apple.com/app/id6832581744): download for iPhone and iPad
+- [Parent guide: how to end screen time without tantrums](https://giacantaro001.github.io/onemorecartoon/end-screen-time-without-tantrums.html)
+- [Support](https://giacantaro001.github.io/onemorecartoon/support.html): free trial, restoring purchases, refunds
+- [Privacy policy](https://giacantaro001.github.io/onemorecartoon/privacy.html)
+- Contact: smallpeak001@gmail.com

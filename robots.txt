@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://giacantaro001.github.io/onemorecartoon/sitemap.xml
