@@ -1,6 +1,6 @@
 # One More Cartoon!
 
-> One More Cartoon! is an iPhone and iPad app (Android coming soon) that helps parents end children's screen time without tantrums. It counts down in cartoons instead of minutes, warns before the last cartoon with a cheerful voice (optionally using the child's name or the parent's own recorded voice), then announces what comes next: bath, bedtime, dinner, going outside or a custom message.
+> One More Cartoon! is an iPhone and iPad app (Android coming soon) that helps parents end children's screen time without tantrums. It counts down in cartoons instead of minutes, warns before the last cartoon with a cheerful voice (optionally using the child's name), then announces what comes next: bath, bedtime, dinner, going outside or one of 40 ready-made messages. Siblings mode calls every child by name (in a new order each time) and "Who picks tonight?" fairly chooses which child picks the cartoons for the evening.
 
 - Audience: parents of toddlers and young children (about 2–7 years old)
 - Price: free download, every feature free for 30 days, then a one-time purchase to unlock forever (£1.89 / $1.99 / €1.99). No subscription, no ads.
