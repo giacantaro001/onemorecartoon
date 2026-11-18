@@ -43,3 +43,4 @@ details p { margin: 8px 0 4px; }
 h2.step { font-family: Fredoka, system-ui, sans-serif; font-weight:700; font-size: 21px; margin: 22px 0 4px; letter-spacing:0; }
 footer a { color:#fff; }
 @media (max-width: 480px) { .store { min-width: 0; flex: 1 1 140px; font-size: 18px; } .card { padding: 18px 16px 8px; } }
+footer .social { margin:0 0 6px; font-size:16px; font-weight:600; }
