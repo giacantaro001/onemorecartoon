@@ -21,32 +21,39 @@
 </script>
 <link rel="stylesheet" href="/style.css">
 <style>
-.wrap{max-width:560px}
+.wrap{max-width:520px}
 .card{text-align:center}
+.gethead{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 16px;text-align:left}
+.gethead img{width:72px;height:72px;border-radius:18px;border-width:3px;box-shadow:4px 4px 0 var(--ink);flex:none}
+.gethead .logo{font-size:clamp(28px,7vw,40px);margin:0;line-height:1}
+.gethead .tag{font-size:14px;margin-top:4px}
+.get-anim.mini{width:46px;flex:none;margin:0;border-width:3px;border-radius:12px;box-shadow:3px 3px 0 var(--ink);transform:rotate(5deg)}
+.getcard h1{margin:0 0 6px}
+.getcard .lead{margin:0 0 14px}
+.getcard .stores{flex-direction:column;align-items:center;gap:10px}
+.getcard .stores .store{width:230px;flex:none;box-sizing:border-box}
+.getcard .follow{flex-direction:column;align-items:center;gap:8px;margin-top:14px}
+.getcard .follow a{width:180px;box-sizing:border-box;justify-content:center}
 .soon-android{display:none;font-weight:600;margin-top:10px}
 .android .soon-android{display:block}
-.get-video{width:min(240px,70%);margin:26px auto 10px}
-.brandrow{display:flex;justify-content:center;align-items:center;gap:18px}
-.get-anim.mini{width:64px;margin:0;border-width:3px;border-radius:14px;box-shadow:4px 4px 0 var(--ink);transform:rotate(4deg)}
+.get-video{width:min(230px,66%);margin:22px auto 8px}
 .get-video .phoneframe{transform:rotate(1.5deg)}
 .get-video figcaption{text-align:center}
 </style></head>
 <body><div class="wrap">
-<header><div class="brandrow"><img src="/icon.png" alt="One More Cartoon! app icon" width="112" height="112"><div class="get-anim mini"><video src="/media/omc_countdown.mp4" poster="/media/omc_countdown.jpg" autoplay muted loop playsinline preload="metadata" aria-label="3, 2, 1, bath time countdown"></video></div></div><p class="logo">ONE MORE CARTOON!</p>
-<p class="tag">Count cartoons, not minutes.</p></header>
-<section class="card hero">
-<h1>Get the app</h1>
-<p class="lead">A friendly countdown that counts cartoons, warns before the last one and announces bath, bed or dinner. Free for 30 days.</p>
-<div class="stores"><a class="store" href="https://apps.apple.com/app/id6832581744"><small>Download on the</small>App Store</a><span class="store soon"><small>Coming soon to</small>Google Play</span></div>
-<p class="soon-android">The Android version is coming very soon. Follow us to hear when it's ready!</p>
+<header class="gethead"><img src="/icon.png" alt="One More Cartoon! app icon" width="72" height="72"><div><p class="logo">ONE MORE<br>CARTOON!</p><p class="tag" data-t="8">Count cartoons, not minutes.</p></div><div class="get-anim mini"><video src="/media/omc_countdown.mp4" poster="/media/omc_countdown.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div></header>
+<section class="card hero getcard">
+<h1 data-t="0">Get the app</h1>
+<p class="lead" data-t="1">A friendly countdown that counts cartoons, warns before the last one and announces bath, bed or dinner. Free for 30 days.</p>
+<div class="stores"><a class="store" href="https://apps.apple.com/app/id6832581744"><small data-t="2">Download on the</small>App Store</a><span class="store soon"><small data-t="3">Coming soon to</small>Google Play</span></div>
+<p class="soon-android" data-t="4">The Android version is coming very soon. Follow us to hear when it's ready!</p>
 <div class="follow"><a href="https://www.tiktok.com/@onemorecartoon.app" target="_blank" rel="noopener"><b>♪</b>TikTok</a><a href="https://www.instagram.com/onemorecartoon.app/" target="_blank" rel="noopener"><b>◎</b>Instagram</a><a href="https://www.youtube.com/channel/UCwoAKh09MmE_qutPHP0vwwg" target="_blank" rel="noopener"><b>▶</b>YouTube</a></div>
-
-<figure class="hero-video get-video"><span class="vtag" aria-hidden="true">▶ 25s</span><div class="phoneframe"><div class="vbox"><video id="introvid" src="/media/omc_intro.mp4" poster="/media/omc_intro.jpg" autoplay muted loop playsinline preload="metadata" width="720" height="1280" aria-label="One More Cartoon! intro video"></video>
-<button class="vsound" type="button" aria-pressed="false" onclick="var v=document.getElementById('introvid');v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play()}this.setAttribute('aria-pressed',String(!v.muted));this.firstChild.textContent=v.muted?'🔇 ':'🔊 '">🔇 <span>Sound</span></button></div></div>
-<figcaption>Includes AI-generated scenes</figcaption></figure>
-<script>(function(){var M={it:"it",es:"es",fr:"fr",de:"de",pt:"pt-br",nl:"nl",pl:"pl",zh:"zh",ja:"ja"},c=null;try{c=localStorage.getItem("omc_lang")}catch(e){}if(!c){var l=(navigator.language||"").toLowerCase().split("-")[0];c=M[l]||null}if(c&&c!=="en"&&M[c.split("-")[0]]){var v=document.getElementById("introvid");v.poster="/media/omc_intro_"+c+".jpg";v.src="/media/omc_intro_"+c+".mp4"}})();</script>
-<p class="small"><a href="/">More about the app</a></p>
-
+<figure class="hero-video get-video"><span class="vtag" aria-hidden="true">▶ 30s</span><div class="phoneframe"><div class="vbox"><video id="introvid" src="/media/omc_intro.mp4" poster="/media/omc_intro.jpg" autoplay muted loop playsinline preload="metadata" width="720" height="1280" aria-label="One More Cartoon! intro video"></video>
+<button class="vsound" type="button" aria-pressed="false" onclick="var v=document.getElementById('introvid');v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play()}this.setAttribute('aria-pressed',String(!v.muted));this.firstChild.textContent=v.muted?'🔇 ':'🔊 '">🔇 <span data-t="7">Sound</span></button></div></div>
+<figcaption data-t="6">Includes AI-generated scenes</figcaption></figure>
+<p class="small"><a id="morelink" href="/" data-t="5">More about the app</a></p>
 </section>
 <footer>© 2026 One More Cartoon! · <a href="mailto:hello@onemorecartoon.com">hello@onemorecartoon.com</a></footer>
-</div></body></html>
+</div>
+<script>(function(){var G={"it": ["Scarica l'app", "Un conto alla rovescia simpatico che conta i cartoni, avvisa prima dell'ultimo e annuncia bagnetto, nanna o cena. Gratis per 30 giorni.", "Scarica su", "In arrivo su", "La versione Android arriva prestissimo. Seguici per sapere quando è pronta!", "Scopri di più sull'app", "Contiene scene generate con l'IA", "Audio", "Conta i cartoni, non i minuti."], "es": ["Descarga la app", "Una cuenta atrás simpática que cuenta dibujos, avisa antes del último y anuncia baño, cama o cena. Gratis 30 días.", "Descárgalo en", "Próximamente en", "La versión para Android llega muy pronto. ¡Síguenos para enterarte!", "Más sobre la app", "Incluye escenas generadas con IA", "Sonido", "Cuenta dibujos, no minutos."], "fr": ["Obtenir l'app", "Un compte à rebours sympa qui compte les dessins animés, prévient avant le dernier et annonce le bain, le dodo ou le dîner. Gratuit 30 jours.", "Télécharger dans", "Bientôt sur", "La version Android arrive très bientôt. Suivez-nous pour être prévenu !", "En savoir plus sur l'app", "Contient des scènes générées par IA", "Son", "Comptez les dessins animés, pas les minutes."], "de": ["Hol dir die App", "Ein freundlicher Countdown, der Cartoons zählt, vor dem letzten warnt und Baden, Bett oder Abendessen ankündigt. 30 Tage kostenlos.", "Laden im", "Bald bei", "Die Android-Version kommt sehr bald. Folge uns, um es zu erfahren!", "Mehr über die App", "Enthält KI-generierte Szenen", "Ton", "Zähl Cartoons, nicht Minuten."], "pt-br": ["Baixe o app", "Uma contagem regressiva simpática que conta desenhos, avisa antes do último e anuncia banho, cama ou jantar. Grátis por 30 dias.", "Baixar na", "Em breve no", "A versão Android chega muito em breve. Siga a gente para saber quando!", "Saiba mais sobre o app", "Inclui cenas geradas por IA", "Som", "Conte desenhos, não minutos."], "nl": ["Download de app", "Een vrolijk aftellen dat tekenfilms telt, waarschuwt voor de laatste en bad, bed of eten aankondigt. 30 dagen gratis.", "Download in de", "Binnenkort in", "De Android-versie komt heel binnenkort. Volg ons om het te horen!", "Meer over de app", "Bevat door AI gegenereerde scènes", "Geluid", "Tel tekenfilms, geen minuten."], "pl": ["Pobierz aplikację", "Sympatyczne odliczanie, które liczy bajki, uprzedza przed ostatnią i ogłasza kąpiel, spanie lub kolację. 30 dni za darmo.", "Pobierz z", "Wkrótce w", "Wersja na Androida już wkrótce. Obserwuj nas, aby się dowiedzieć!", "Więcej o aplikacji", "Zawiera sceny wygenerowane przez AI", "Dźwięk", "Licz bajki, nie minuty."], "zh": ["获取应用", "一个可爱的倒计时：按动画片集数倒数，最后一集前提醒，然后宣布洗澡、睡觉或吃饭。免费 30 天。", "下载于", "即将登陆", "Android 版即将推出，关注我们获取最新消息！", "了解更多", "包含 AI 生成的场景", "声音", "数动画片，不数分钟。"], "ja": ["アプリを入手", "アニメの本数でカウントダウンし、最後の1本の前にお知らせ、そのあとお風呂・おやすみ・ごはんを伝えます。30日間無料。", "ダウンロード", "近日公開", "Android版はまもなく登場。フォローして最新情報をチェック！", "アプリについて詳しく", "AI生成のシーンを含みます", "音声", "分じゃなく、アニメの本数で。"]};var M={it:"it",es:"es",fr:"fr",de:"de",pt:"pt-br",nl:"nl",pl:"pl",zh:"zh",ja:"ja"};var c=null;try{c=localStorage.getItem("omc_lang")}catch(e){}if(!c){var ls=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""];for(var i=0;i<ls.length;i++){var l=(ls[i]||"").toLowerCase().split("-")[0];if(l==="en")break;if(M[l]){c=M[l];break}}}if(!c||!G[c])return;var t=G[c];document.documentElement.lang=c;document.querySelectorAll("[data-t]").forEach(function(el){el.textContent=t[+el.getAttribute("data-t")]});document.getElementById("morelink").href="/"+c+"/";var v=document.getElementById("introvid");v.poster="/media/omc_intro_"+c+".jpg";v.src="/media/omc_intro_"+c+".mp4";document.title=t[0]+" – One More Cartoon!"})();</script>
+</body></html>
