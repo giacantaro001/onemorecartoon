@@ -25,6 +25,9 @@
 .card{text-align:center}
 .soon-android{display:none;font-weight:600;margin-top:10px}
 .android .soon-android{display:block}
+.get-video{width:min(240px,70%);margin:26px auto 10px}
+.get-video .phoneframe{transform:rotate(1.5deg)}
+.get-video figcaption{text-align:center}
 </style></head>
 <body><div class="wrap">
 <header><img src="/icon.png" alt="One More Cartoon! app icon" width="112" height="112"><p class="logo">ONE MORE CARTOON!</p>
@@ -35,7 +38,10 @@
 <div class="stores"><a class="store" href="https://apps.apple.com/app/id6832581744"><small>Download on the</small>App Store</a><span class="store soon"><small>Coming soon to</small>Google Play</span></div>
 <p class="soon-android">The Android version is coming very soon. Follow us to hear when it's ready!</p>
 <div class="follow"><a href="https://www.tiktok.com/@onemorecartoon.app" target="_blank" rel="noopener"><b>♪</b>TikTok</a><a href="https://www.instagram.com/onemorecartoon.app/" target="_blank" rel="noopener"><b>◎</b>Instagram</a><a href="https://www.youtube.com/channel/UCwoAKh09MmE_qutPHP0vwwg" target="_blank" rel="noopener"><b>▶</b>YouTube</a></div>
-<div class="get-anim"><video src="/media/omc_countdown.mp4" poster="/media/omc_countdown.jpg" autoplay muted loop playsinline preload="metadata" aria-label="3, 2, 1, bath time countdown"></video></div>
+<figure class="hero-video get-video"><span class="vtag" aria-hidden="true">▶ 25s</span><div class="phoneframe"><div class="vbox"><video id="introvid" src="/media/omc_intro.mp4" poster="/media/omc_intro.jpg" autoplay muted loop playsinline preload="metadata" width="720" height="1280" aria-label="One More Cartoon! intro video"></video>
+<button class="vsound" type="button" aria-pressed="false" onclick="var v=document.getElementById('introvid');v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play()}this.setAttribute('aria-pressed',String(!v.muted));this.firstChild.textContent=v.muted?'🔇 ':'🔊 '">🔇 <span>Sound</span></button></div></div>
+<figcaption>Includes AI-generated scenes</figcaption></figure>
+<script>(function(){var M={it:"it",es:"es",fr:"fr",de:"de",pt:"pt-br",nl:"nl",pl:"pl",zh:"zh",ja:"ja"},c=null;try{c=localStorage.getItem("omc_lang")}catch(e){}if(!c){var l=(navigator.language||"").toLowerCase().split("-")[0];c=M[l]||null}if(c&&c!=="en"&&M[c.split("-")[0]]){var v=document.getElementById("introvid");v.poster="/media/omc_intro_"+c+".jpg";v.src="/media/omc_intro_"+c+".mp4"}})();</script>
 <p class="small"><a href="/">More about the app</a></p>
 </section>
 <footer>© 2026 One More Cartoon! · <a href="mailto:hello@onemorecartoon.com">hello@onemorecartoon.com</a></footer>
