@@ -44,3 +44,15 @@ h2.step { font-family: Fredoka, system-ui, sans-serif; font-weight:700; font-siz
 footer a { color:#fff; }
 @media (max-width: 480px) { .store { min-width: 0; flex: 1 1 140px; font-size: 18px; } .card { padding: 18px 16px 8px; } }
 footer .social { margin:0 0 6px; font-size:16px; font-weight:600; }
+header { position:relative; }
+.langs { position:absolute; top:0; right:0; z-index:5; text-align:left; }
+.langs summary { list-style:none; cursor:pointer; background:#fff; border:3px solid var(--ink); border-radius:99px; padding:6px 14px; font-weight:700; box-shadow:3px 3px 0 var(--ink); font-size:15px; }
+.langs summary::-webkit-details-marker { display:none; }
+.langs div { position:absolute; right:0; margin-top:8px; background:#fff; border:3px solid var(--ink); border-radius:16px; box-shadow:5px 5px 0 var(--ink); padding:6px; display:flex; flex-direction:column; min-width:190px; }
+.langs a { color:var(--ink); text-decoration:none; padding:7px 12px; border-radius:10px; font-weight:600; }
+.langs a:hover, .langs a[aria-current] { background:var(--yellow); }
+.follow { display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:center; margin-top:14px; }
+.follow span { font-weight:700; }
+.follow a { display:inline-flex; align-items:center; gap:6px; background:#fff; color:var(--ink); text-decoration:none; font-weight:700; padding:7px 14px; border:3px solid var(--ink); border-radius:99px; box-shadow:3px 3px 0 var(--ink); }
+.follow a b { display:inline-flex; width:22px; height:22px; border-radius:50%; background:var(--ink); color:#fff; align-items:center; justify-content:center; font-size:12px; }
+@media (max-width: 480px) { .langs { position:static; display:flex; justify-content:flex-end; margin-bottom:8px; } .langs div { right:16px; } }
