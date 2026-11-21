@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>One More Cartoon! – demo</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+html,body{margin:0;height:100%;background:#3dd6f5;overflow:hidden;font-family:Fredoka,system-ui,sans-serif}
+#start{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#3dd6f5;z-index:10;text-align:center;padding:20px;box-sizing:border-box}
+#start img{width:110px;height:110px;border-radius:26px;border:4px solid #1b1530;box-shadow:5px 5px 0 #1b1530}
+#start .logo{font:900 34px/1 Impact,'Arial Black',sans-serif;color:#ffd23f;-webkit-text-stroke:1.5px #1b1530;text-shadow:3px 3px 0 #ff5fa2;margin:0}
+#go{all:unset;cursor:pointer;background:#ffd23f;color:#1b1530;border:4px solid #1b1530;border-radius:20px;box-shadow:5px 5px 0 #ff5fa2;font:900 28px Impact,'Arial Black',sans-serif;padding:14px 34px;letter-spacing:1px}
+#go[disabled]{opacity:.6}
+#note{max-width:330px;font:600 15px system-ui,sans-serif;color:#1b1530;background:#fff;border:3px solid #1b1530;border-radius:14px;padding:10px 12px;margin:0}
+#bar{position:fixed;top:0;left:0;right:0;height:0;z-index:5}
+</style></head><body>
+<div id="start"><img src="/apple-touch-icon.png" alt=""><p class="logo">ONE MORE<br>CARTOON!</p>
+<p id="note"></p><button id="go" type="button">▶</button></div>
+<script>
+(function(){
+var MAP={'en':'en-GB','it':'it-IT','es':'es-ES','fr':'fr-FR','de':'de-DE','pt-br':'pt-BR','nl':'nl-NL','pl':'pl-PL','zh':'zh-CN','ja':'ja-JP'};
+var TXT={
+ en:['Sound on! This is the real app. Only difference: each cartoon lasts 10 seconds. In the app you set the real cartoon length.','START THE DEMO'],
+ it:['Alza il volume! Questa è la vera app. Unica differenza: ogni cartone dura 10 secondi. Nell’app imposti tu la durata vera.','INIZIA LA DEMO'],
+ es:['¡Sube el volumen! Es la app de verdad. Única diferencia: cada dibujo dura 10 segundos. En la app eliges la duración real.','EMPEZAR LA DEMO'],
+ fr:['Montez le son ! C’est la vraie app. Seule différence : chaque dessin animé dure 10 secondes. Dans l’app, vous réglez la vraie durée.','LANCER LA DÉMO'],
+ de:['Ton an! Das ist die echte App. Einziger Unterschied: Jede Folge dauert 10 Sekunden. In der App stellst du die echte Länge ein.','DEMO STARTEN'],
+ 'pt-br':['Ligue o som! Este é o app de verdade. Única diferença: cada desenho dura 10 segundos. No app você define a duração real.','COMEÇAR A DEMO'],
+ nl:['Geluid aan! Dit is de echte app. Enige verschil: elke tekenfilm duurt 10 seconden. In de app stel je de echte lengte in.','START DE DEMO'],
+ pl:['Włącz dźwięk! To prawdziwa aplikacja. Jedyna różnica: każda bajka trwa 10 sekund. W aplikacji ustawiasz prawdziwą długość.','URUCHOM DEMO'],
+ zh:['请打开声音！这就是真实的应用。唯一的区别：每集只有 10 秒。在应用里可以设置真实时长。','开始演示'],
+ ja:['音をオンに！これは本物のアプリです。違いはひとつだけ：1本が10秒です。アプリでは本当の長さを設定できます。','デモを始める']};
+var lang='en';try{var q=new URLSearchParams(location.search).get('lang');if(q&&MAP[q])lang=q;else{var c=localStorage.getItem('omc_lang');if(c&&MAP[c])lang=c}}catch(e){}
+if(lang==='en'&&!/[?&]lang=/.test(location.search)){var n=(navigator.language||'').toLowerCase();if(n.indexOf('pt')===0)lang='pt-br';else{n=n.split('-')[0];if(MAP[n])lang=n}}
+document.getElementById('note').textContent=TXT[lang][0];document.getElementById('go').textContent='▶ '+TXT[lang][1];
+window.omcLocale=function(){return MAP[lang]};
+window.flutterConfiguration={canvasKitBaseUrl:'/try/app/canvaskit/'};
+// ---- speech: plays the website's copies of the app's voice clips, else the browser voice
+var audio=new Audio();audio.preload='auto';var qid=0,ok={};
+function url(p){var m=/^assets\/voice\/([A-Za-z]+)\/(names\/)?([^\/]+)\.mp3$/.exec(p);if(!m)return null;var L=m[1]==='enUs'?'en':m[1];
+ if(m[2])return L==='en'?'/try/voice/names/'+m[3]+'.mp3':'/try/voice/'+L+'/n_'+m[3]+'.mp3';return L==='en'?'/try/voice/'+m[3]+'.mp3':'/try/voice/'+L+'/'+m[3]+'.mp3'}
+function exists(u){if(u in ok)return Promise.resolve(ok[u]);return fetch(u,{method:'HEAD'}).then(function(r){return ok[u]=r.ok}).catch(function(){return ok[u]=false})}
+function tts(t,tag){return new Promise(function(res){try{var x=new SpeechSynthesisUtterance(t);x.lang=tag;x.onend=res;x.onerror=res;speechSynthesis.speak(x)}catch(e){res()}})}
+function playUrl(u){return new Promise(function(res){audio.onended=res;audio.onerror=res;audio.src=u;try{var p=audio.play();if(p&&p.catch)p.catch(res)}catch(e){res()}})}
+window.omcStop=function(){qid++;try{audio.pause()}catch(e){}try{speechSynthesis.cancel()}catch(e){}};
+window.omcSpeak=function(text,tag,clips){window.omcStop();var id=qid;clips=Array.prototype.slice.call(clips||[]);
+ var items=clips.map(function(c){if(c.indexOf('tts:')===0)return{t:c.slice(4)};var u=url(c);return u?{u:u}:{bad:1}});
+ var chk=items.filter(function(i){return i.u}).map(function(i){return exists(i.u)});
+ return Promise.all(chk).then(function(r){if(id!==qid)return true;
+  var good=items.length>0&&!items.some(function(i){return i.bad})&&r.every(Boolean);
+  if(!good){tts(text,tag);return true}
+  (function next(i){if(id!==qid||i>=items.length)return;var it=items[i];(it.t?tts(it.t,tag):playUrl(it.u)).then(function(){next(i+1)})})(0);
+  return true})};
+// ---- start: unlock audio inside the tap, then load the app
+document.getElementById('go').onclick=function(){var b=this;b.disabled=true;
+ try{audio.src='/try/voice/count_left_1.mp3';audio.muted=true;var p=audio.play();if(p&&p.then)p.then(function(){audio.pause();audio.muted=false}).catch(function(){audio.muted=false})}catch(e){}
+ try{speechSynthesis.speak(new SpeechSynthesisUtterance(''))}catch(e){}
+ b.textContent='…';var s=document.createElement('script');s.src='main.dart.js';s.defer=true;document.body.appendChild(s);
+ var t=setInterval(function(){if(document.querySelector('flutter-view,flt-glass-pane')){clearInterval(t);setTimeout(function(){document.getElementById('start').remove()},600)}},200)};
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c11cfea035074ed38077c78b3e4a947c"}'></script><!-- End Cloudflare Web Analytics -->
+</body></html>
