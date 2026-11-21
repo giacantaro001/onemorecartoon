@@ -12,6 +12,7 @@
 ## Links
 - [Home and FAQ](https://onemorecartoon.com/): what the app does, how it works, answers to common questions
 - [App Store](https://apps.apple.com/app/id6832581744): download for iPhone and iPad
+- [Try it in your browser](https://onemorecartoon.com/try/): free interactive demo of the countdown, no download
 - [Parent guide: how to end screen time without tantrums](https://onemorecartoon.com/end-screen-time-without-tantrums.html)
 - [Screen time rules for toddlers that actually stick](https://onemorecartoon.com/screen-time-rules-for-toddlers.html)
 - [Siblings fighting over the TV? Fair turns](https://onemorecartoon.com/siblings-fighting-over-the-tv.html)
