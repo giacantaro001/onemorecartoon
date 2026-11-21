@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Try One More Cartoon! in your browser – free demo</title>
+<meta name="description" content="Try the One More Cartoon! countdown right now, no download: pick how many cartoons, hear the friendly warning before the last one and the bath, bed or dinner announcement.">
+<link rel="canonical" href="https://onemorecartoon.com/try/">
+<meta property="og:type" content="website"><meta property="og:title" content="Try One More Cartoon! – free demo"><meta property="og:description" content="Count cartoons, not minutes. Try the countdown in your browser, no download."><meta property="og:url" content="https://onemorecartoon.com/try/"><meta property="og:image" content="https://onemorecartoon.com/img/og.jpg">
+<meta name="apple-itunes-app" content="app-id=6832581744">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#2ec4b6">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+.wrap{max-width:560px}
+.demohead{text-align:center;margin:8px 0 12px}
+.demohead .logo{font-size:clamp(30px,8vw,44px);margin:0}
+.demohead p{margin:4px 0 0;font-weight:600;color:#fff;text-shadow:1px 1px 0 var(--ink)}
+.phone{position:relative;max-width:380px;margin:0 auto;border:4px solid var(--ink);border-radius:34px;box-shadow:7px 7px 0 var(--ink);overflow:hidden;background:var(--cyan);min-height:560px;display:flex;flex-direction:column;transition:background .4s}
+.phone.last{background:#ff9a1f}.phone.done{background:#ff4d5e}
+.phone::before{content:"";position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 40%,rgba(255,255,255,.13) 0 10deg,transparent 10deg 20deg);pointer-events:none}
+.scr{position:relative;flex:1;display:none;flex-direction:column;padding:18px 16px 16px;gap:12px}
+.scr.on{display:flex}
+.applogo{font:400 34px/0.95 Anton,Impact,sans-serif;text-align:center;color:var(--yellow);-webkit-text-stroke:1.5px var(--ink);text-shadow:3px 3px 0 var(--pink);margin:4px 0 6px}
+.applogo small{display:block;font-size:20px;color:#fff}
+.row{background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:3px 3px 0 var(--ink);padding:10px 12px}
+.row h2{font:600 15px Fredoka,system-ui,sans-serif;margin:0 0 8px;color:var(--ink)}
+.stepper{display:flex;align-items:center;justify-content:space-between}
+.stepper button{all:unset;cursor:pointer;width:46px;height:46px;border:3px solid var(--ink);border-radius:50%;background:var(--yellow);font:700 26px/40px Fredoka,sans-serif;text-align:center;box-shadow:2px 2px 0 var(--ink);color:var(--ink)}
+.stepper button:disabled{opacity:.35;cursor:default}
+.stepper output{font:400 44px Anton,Impact,sans-serif;color:var(--ink)}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chips button{all:unset;cursor:pointer;text-align:center;border:2.5px solid var(--ink);border-radius:12px;padding:8px 4px;font:600 15px Fredoka,sans-serif;color:var(--ink);background:#fff}
+.chips button[aria-pressed=true]{background:var(--yellow);box-shadow:2px 2px 0 var(--ink)}
+.row input{width:100%;box-sizing:border-box;border:2.5px solid var(--ink);border-radius:10px;padding:8px 10px;font:600 16px Fredoka,sans-serif}
+.big{all:unset;cursor:pointer;display:block;text-align:center;background:var(--yellow);color:var(--ink);border:3.5px solid var(--ink);border-radius:18px;box-shadow:4px 4px 0 var(--pink);font:400 30px Anton,Impact,sans-serif;padding:10px 0;letter-spacing:1px}
+.big:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--pink)}
+.counter{background:var(--cream);border:3.5px solid var(--ink);border-radius:24px;box-shadow:5px 5px 0 var(--ink);text-align:center;padding:10px 10px 14px;flex:1;display:flex;flex-direction:column;justify-content:center}
+.counter .num{font:400 170px/1 Anton,Impact,sans-serif;color:var(--ink);text-shadow:6px 6px 0 var(--pink)}
+.counter .lbl{font:400 32px Anton,Impact,sans-serif;color:var(--ink);margin-top:4px}
+.bar{height:16px;border:3px solid var(--ink);border-radius:99px;background:#fff;overflow:hidden;margin:12px 8px 0}
+.bar i{display:block;height:100%;width:0;background:var(--teal)}
+.last .bar i{background:#ff9a1f}
+.bubble{background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:3px 3px 0 var(--cyan);padding:10px 12px;text-align:center;font:600 17px Fredoka,sans-serif;color:var(--ink);min-height:24px}
+.ctrl{display:flex;gap:10px}
+.ctrl button{all:unset;cursor:pointer;flex:1;text-align:center;background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink);font:600 15px Fredoka,sans-serif;padding:9px 0;color:var(--ink)}
+.burst{flex:1;display:flex;align-items:center;justify-content:center}
+.burst div{width:250px;height:250px;background:var(--yellow);clip-path:polygon(50% 0,61% 18%,82% 8%,79% 31%,100% 38%,83% 53%,96% 74%,72% 74%,66% 98%,50% 82%,33% 98%,28% 74%,4% 74%,17% 53%,0 38%,21% 31%,18% 8%,39% 18%);display:flex;align-items:center;justify-content:center;text-align:center;font:400 44px/0.95 Anton,Impact,sans-serif;color:var(--pink);-webkit-text-stroke:1.5px var(--ink);animation:pop .5s ease-out}
+@keyframes pop{0%{transform:scale(.2) rotate(-20deg)}80%{transform:scale(1.08)}100%{transform:scale(1)}}
+.note{font-size:13px;text-align:center;color:var(--ink);background:rgba(255,255,255,.85);border-radius:10px;padding:4px 8px;margin:0}
+.after{margin-top:22px}
+.free{font-weight:700;margin:6px 0 0}
+</style></head>
+<body><div class="wrap">
+<header class="demohead"><a href="/" style="text-decoration:none"><p class="logo">ONE MORE CARTOON!</p></a><p>Try it now, right here. No download.</p></header>
+
+<div class="phone" id="phone" aria-live="polite">
+ <section class="scr on" id="s-setup">
+  <div class="applogo"><small>ONE MORE</small>CARTOON!</div>
+  <div class="row"><h2>How many cartoons?</h2><div class="stepper"><button type="button" id="minus" aria-label="One fewer">−</button><output id="total">3</output><button type="button" id="plus" aria-label="One more">+</button></div></div>
+  <div class="row"><h2>What comes next?</h2><div class="chips" id="chips">
+   <button type="button" data-r="bath" aria-pressed="true">🛁 Bath</button><button type="button" data-r="bedtime" aria-pressed="false">🌙 Bed</button>
+   <button type="button" data-r="mealtime" aria-pressed="false">🍝 Dinner</button><button type="button" data-r="outside" aria-pressed="false">🌳 Outside</button></div></div>
+  <div class="row"><h2>Child's name <span style="font-weight:400">(optional)</span></h2><input id="name" maxlength="20" autocomplete="off" placeholder="e.g. Amy"></div>
+  <button class="big" type="button" id="play">▶ PLAY</button>
+  <p class="note">🔊 Turn your sound on. In this demo each cartoon lasts 10 seconds.</p>
+ </section>
+ <section class="scr" id="s-run">
+  <div class="applogo" style="font-size:26px"><small style="font-size:15px">ONE MORE</small>CARTOON!</div>
+  <div class="counter"><div class="num" id="num">3</div><div class="lbl" id="lbl">CARTOONS LEFT</div><div class="bar"><i id="prog"></i></div></div>
+  <div class="bubble" id="say"></div>
+  <div class="ctrl"><button type="button" id="skip">⏭ Next cartoon</button><button type="button" id="stop">↺ Start again</button></div>
+ </section>
+ <section class="scr" id="s-done">
+  <div class="applogo" style="font-size:26px"><small style="font-size:15px">ONE MORE</small>CARTOON!</div>
+  <div class="burst"><div id="bursttxt">BATH<br>TIME!</div></div>
+  <div class="bubble" id="say2"></div>
+  <a class="big" href="https://apps.apple.com/app/id6832581744?ppid=9c4321db-4d78-4ab3-8382-7b7fd36ae611" style="font-size:24px">GET IT FREE ON THE APP STORE</a>
+  <div class="ctrl"><button type="button" id="again">↺ Try again</button></div>
+ </section>
+</div>
+
+<section class="card after">
+<h1 style="font-size:28px">That's it. No more “just one more!”</h1>
+<p>At home it works with real cartoons on any TV, tablet or streaming app. Children can see how many are left, hear a friendly warning before the last one, and know exactly what comes next. The app also says your child's name, has siblings mode and 40 other “what's next” messages.</p>
+<div class="stores"><a class="store" href="https://apps.apple.com/app/id6832581744?ppid=9c4321db-4d78-4ab3-8382-7b7fd36ae611"><small>Download on the</small>App Store</a><span class="store soon"><small>Coming soon to</small>Google Play</span></div>
+<p class="free">Free to try · no account · no ads</p>
+<p class="small">All features free for 30 days, then a one-time £1.89 / $1.99 / €1.99. No subscription. <a href="/">More about the app</a> · <a href="/counting-cartoons-vs-visual-timers.html">Compare with visual timers</a></p>
+</section>
+<footer><p class="social">Follow us: <a href="https://www.tiktok.com/@onemorecartoon.app" rel="me noopener" target="_blank">TikTok</a> · <a href="https://www.youtube.com/channel/UCwoAKh09MmE_qutPHP0vwwg" rel="me noopener" target="_blank">YouTube</a></p>© 2026 One More Cartoon! · <a href="mailto:hello@onemorecartoon.com">hello@onemorecartoon.com</a> · <a href="/support.html">Support</a> · <a href="/privacy.html">Privacy</a></footer>
+</div>
+<script>
+(function(){
+var CART=10000, W=['','One','Two','Three','Four','Five'];
+var TXT={bath:'Time for your bath!',bedtime:'Time for bed!',mealtime:'Time to eat!',outside:'Time to go outside!'};
+var BURST={bath:'BATH<br>TIME!',bedtime:'BED<br>TIME!',mealtime:'DINNER<br>TIME!',outside:'OUTSIDE<br>TIME!'};
+var $=function(i){return document.getElementById(i)};
+var total=3, routine='bath', left=0, start=0, raf=0, audio=new Audio();
+audio.preload='auto';
+function show(id){['s-setup','s-run','s-done'].forEach(function(s){$(s).classList.toggle('on',s===id)})}
+function say(el,text,clip){var n=$('name').value.trim();$(el).textContent=n?n+', '+text.charAt(0).toLowerCase()+text.slice(1):text;
+ if(clip){try{audio.src='voice/'+clip+'.mp3';var p=audio.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}}
+function upd(){$('total').textContent=total;$('minus').disabled=total<=1;$('plus').disabled=total>=5}
+$('minus').onclick=function(){if(total>1)total--;upd()};
+$('plus').onclick=function(){if(total<5)total++;upd()};
+document.querySelectorAll('#chips button').forEach(function(b){b.onclick=function(){routine=b.getAttribute('data-r');document.querySelectorAll('#chips button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))})}});
+function draw(){$('num').textContent=left;$('lbl').textContent=left===1?'LAST CARTOON!':'CARTOONS LEFT';$('phone').classList.toggle('last',left===1)}
+function tick(){var f=Math.min(1,(Date.now()-start)/CART);$('prog').style.width=(f*100)+'%';if(f>=1){next();return}raf=requestAnimationFrame(tick)}
+function next(){cancelAnimationFrame(raf);left--;
+ if(left<=0){finish();return}
+ draw();say('say',left===1?'This is your last cartoon!':W[left]+' cartoons left!','count_left_'+left);start=Date.now();raf=requestAnimationFrame(tick)}
+function finish(){$('phone').classList.remove('last');$('phone').classList.add('done');$('bursttxt').innerHTML=BURST[routine];show('s-done');say('say2',TXT[routine],'finish_'+routine)}
+$('play').onclick=function(){left=total;$('phone').classList.remove('done');show('s-run');draw();
+ say('say',total===1?'One cartoon for you. Enjoy!':W[total]+' cartoons for you. Enjoy!','greet_count_'+total);
+ if(left===1){$('say').textContent+=' It’s the last one.'}
+ start=Date.now();raf=requestAnimationFrame(tick)};
+$('skip').onclick=function(){next()};
+function reset(){cancelAnimationFrame(raf);try{audio.pause()}catch(e){}$('phone').classList.remove('last','done');show('s-setup')}
+$('stop').onclick=reset;$('again').onclick=reset;
+upd();
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c11cfea035074ed38077c78b3e4a947c"}'></script><!-- End Cloudflare Web Analytics -->
+</body></html>
