@@ -109,3 +109,6 @@ header { position:relative; }
 .trywrap{margin:8px 0 6px}
 .trybtn{display:inline-block;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 var(--yellow);padding:8px 16px;font-weight:700;text-decoration:none}
 .trybtn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--pink)}
+
+.toptry{margin:12px 0 0}.trybtn.hot{background:var(--yellow);font-size:19px;padding:10px 20px;box-shadow:4px 4px 0 var(--pink)}
+nav a.navtry{font-weight:700}
