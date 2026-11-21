@@ -47,6 +47,25 @@
 @keyframes pop{0%{transform:scale(.2) rotate(-20deg)}80%{transform:scale(1.08)}100%{transform:scale(1)}}
 .note{font-size:13px;text-align:center;color:var(--ink);background:rgba(255,255,255,.85);border-radius:10px;padding:4px 8px;margin:0}
 .after{margin-top:22px}
+.rowline{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rowline h2{margin:0}
+.val{font:400 22px Anton,Impact,sans-serif;color:var(--ink)}
+.lock{all:unset;cursor:pointer;display:flex;align-items:center;gap:6px}
+.lock small{font:600 11px Fredoka,sans-serif;background:#eee;border:2px solid var(--ink);border-radius:99px;padding:1px 7px}
+.sub{font:400 13px Fredoka,sans-serif;color:#555;margin:4px 0 0}
+.tog{all:unset;cursor:pointer;font:700 12px Fredoka,sans-serif;border:2.5px solid var(--ink);border-radius:99px;padding:2px 10px;background:#eee;color:var(--ink)}
+.tog[aria-pressed=true]{background:var(--teal);color:#fff}
+.sibs{display:none;margin-top:8px;gap:6px;flex-direction:column}
+.sibson .sibs{display:flex}.sibson #name{display:none}
+.row .kid{width:100%;box-sizing:border-box;border:2.5px solid var(--ink);border-radius:10px;padding:8px 10px;font:600 16px Fredoka,sans-serif}
+.addkid{all:unset;cursor:pointer;font:600 14px Fredoka,sans-serif;color:var(--ink);text-decoration:underline}
+.pick{position:absolute;inset:0;background:rgba(27,21,48,.55);display:none;align-items:flex-end;justify-content:center;z-index:5;padding-bottom:70px}
+.pickcard .big{width:100%;box-sizing:border-box}
+.pick.on{display:flex}
+.pickcard{background:var(--cream);border:3.5px solid var(--ink);border-radius:24px;box-shadow:5px 5px 0 var(--pink);width:84%;padding:16px;text-align:center}
+.pickcard h3{font:400 28px Anton,Impact,sans-serif;margin:0 0 8px;color:var(--ink)}
+.wheel{font:400 46px Anton,Impact,sans-serif;color:var(--pink);-webkit-text-stroke:1px var(--ink);min-height:60px;margin:6px 0}
+.pickcard p{font:600 15px Fredoka,sans-serif;margin:4px 0 12px;color:var(--ink)}
 .free{font-weight:700;margin:6px 0 0}
 </style></head>
 <body><div class="wrap">
@@ -59,10 +78,16 @@
   <div class="row"><h2>What comes next?</h2><div class="chips" id="chips">
    <button type="button" data-r="bath" aria-pressed="true">🛁 Bath</button><button type="button" data-r="bedtime" aria-pressed="false">🌙 Bed</button>
    <button type="button" data-r="mealtime" aria-pressed="false">🍝 Dinner</button><button type="button" data-r="outside" aria-pressed="false">🌳 Outside</button></div></div>
-  <div class="row"><h2>Child's name <span style="font-weight:400">(optional)</span></h2><input id="name" maxlength="20" autocomplete="off" placeholder="e.g. Amy"></div>
+  <div class="row"><div class="rowline"><h2>Cartoon length</h2><button type="button" class="lock" id="len"><span class="val">10 sec</span><small>🔒 demo</small></button></div><p class="sub" id="lenmsg">Fixed at 10 seconds in this demo. In the app you set your real cartoon length.</p></div>
+  <div class="row" id="namerow"><div class="rowline"><h2>Child's name</h2><span style="display:flex;align-items:center;gap:6px;font:600 12px Fredoka,sans-serif">Siblings <button type="button" class="tog" id="sibtog" aria-pressed="false">OFF</button></span></div>
+   <input id="name" maxlength="20" autocomplete="off" placeholder="e.g. Amy (optional)" style="margin-top:8px">
+   <div class="sibs" id="sibs"><input class="kid" maxlength="20" value="Amy" aria-label="Child 1"><input class="kid" maxlength="20" value="Leo" aria-label="Child 2"><button type="button" class="addkid" id="addkid">+ Add a child</button>
+    <div class="rowline"><span style="font:600 14px Fredoka,sans-serif">Who picks tonight?</span><button type="button" class="tog" id="picktog" aria-pressed="true">ON</button></div>
+    <p class="sub">The voice calls every child, in a new order each time. “Who picks tonight?” fairly chooses one child to pick the cartoons.</p></div></div>
   <button class="big" type="button" id="play">▶ PLAY</button>
-  <p class="note">🔊 Turn your sound on. In this demo each cartoon lasts 10 seconds.</p>
+  <p class="note" id="note">🔊 Turn your sound on.</p>
  </section>
+ <div class="pick" id="pick"><div class="pickcard"><h3>WHO PICKS TONIGHT?</h3><div class="wheel" id="wheel">?</div><p id="picktxt">&nbsp;</p><button class="big" type="button" id="pickplay" style="font-size:24px;visibility:hidden">▶ PLAY</button></div></div>
  <section class="scr" id="s-run">
   <div class="applogo" style="font-size:26px"><small style="font-size:15px">ONE MORE</small>CARTOON!</div>
   <div class="counter"><div class="num" id="num">3</div><div class="lbl" id="lbl">CARTOONS LEFT</div><div class="bar"><i id="prog"></i></div></div>
@@ -80,7 +105,7 @@
 
 <section class="card after">
 <h1 style="font-size:28px">That's it. No more “just one more!”</h1>
-<p>At home it works with real cartoons on any TV, tablet or streaming app. Children can see how many are left, hear a friendly warning before the last one, and know exactly what comes next. The app also says your child's name, has siblings mode and 40 other “what's next” messages.</p>
+<p>At home it works with real cartoons on any TV, tablet or streaming app. Children can see how many are left, hear a friendly warning before the last one, and know exactly what comes next. The app also lets you record your own voice, set the real cartoon length and choose from 40 other “what's next” messages.</p>
 <div class="stores"><a class="store" href="https://apps.apple.com/app/id6832581744?ppid=9c4321db-4d78-4ab3-8382-7b7fd36ae611"><small>Download on the</small>App Store</a><span class="store soon"><small>Coming soon to</small>Google Play</span></div>
 <p class="free">Free to try · no account · no ads</p>
 <p class="small">All features free for 30 days, then a one-time £1.89 / $1.99 / €1.99. No subscription. <a href="/">More about the app</a> · <a href="/counting-cartoons-vs-visual-timers.html">Compare with visual timers</a></p>
@@ -90,30 +115,59 @@
 <script>
 (function(){
 var CART=10000, W=['','One','Two','Three','Four','Five'];
+var NAMES=new Set(["aaliyah", "aaron", "abigail", "ada", "adam", "addison", "adeline", "adrian", "aiden", "aisha", "albert", "alex", "alexa", "alexander", "alfie", "alfred", "ali", "alice", "allison", "amber", "amelia", "amy", "ananya", "andrew", "angel", "anna", "annie", "anthony", "arabella", "archie", "aria", "ariana", "arianna", "arjun", "arlo", "arthur", "aryan", "asher", "aubrey", "audrey", "aurora", "austin", "autumn", "ava", "avery", "axel", "ayden", "ayla", "beatrice", "bella", "ben", "benjamin", "billy", "bobby", "bonnie", "brayden", "brooklyn", "bryson", "caitlin", "caleb", "callum", "cameron", "camila", "caroline", "carson", "carter", "charles", "charlie", "charlotte", "chase", "chloe", "christian", "christopher", "claire", "clara", "colton", "connor", "cooper", "cora", "daisy", "damian", "daniel", "danny", "david", "declan", "delilah", "dexter", "diya", "dominic", "dylan", "easton", "edith", "edward", "elena", "eli", "eliana", "elias", "elijah", "eliza", "elizabeth", "ella", "ellie", "elliot", "ellis", "elsie", "emery", "emilia", "emily", "emma", "emmett", "erin", "esme", "ethan", "eva", "evan", "evelyn", "everett", "everly", "evie", "ezekiel", "ezra", "felix", "finley", "florence", "frankie", "fred", "freddie", "freya", "gabriel", "gabriella", "gavin", "genesis", "george", "georgia", "gianna", "grace", "grayson", "greyson", "hailey", "hallie", "hannah", "harper", "harriet", "harrison", "harry", "hazel", "henry", "holly", "hudson", "hugo", "hunter", "ian", "ibrahim", "iris", "isaac", "isabella", "isabelle", "isaiah", "isla", "ivy", "jace", "jack", "jackson", "jacob", "james", "jameson", "jamie", "jasmine", "jason", "jaxon", "jaxson", "jayden", "jeremiah", "jesse", "jessica", "john", "jonathan", "jordan", "jose", "joseph", "josephine", "joshua", "josiah", "jude", "julia", "julian", "kai", "katie", "kayden", "kaylee", "kennedy", "kingston", "kinsley", "krish", "landon", "layla", "leah", "leo", "leon", "leonardo", "levi", "liam", "lillian", "lilly", "lily", "lincoln", "logan", "lola", "lottie", "louie", "louis", "luca", "lucas", "lucy", "luke", "luna", "lydia", "lyla", "madelyn", "madison", "maisie", "maryam", "mason", "mateo", "matilda", "matthew", "maverick", "max", "maya", "megan", "mia", "micah", "michael", "mila", "miles", "millie", "milo", "mohammed", "molly", "muhammad", "nancy", "naomi", "natalie", "nathan", "nathaniel", "nevaeh", "niamh", "nicholas", "nina", "noah", "nolan", "nora", "nova", "oliver", "olivia", "ollie", "olly", "omar", "orla", "oscar", "otis", "owen", "paisley", "parker", "patrick", "penelope", "phoebe", "piper", "poppy", "priya", "quinn", "rafael", "reggie", "riley", "robert", "robyn", "rohan", "roman", "ronnie", "rory", "rose", "rosie", "rowan", "ruby", "ryan", "saanvi", "sadie", "sam", "samantha", "samuel", "santiago", "sarah", "savannah", "sawyer", "scarlett", "sebastian", "serenity", "seth", "sienna", "silas", "skylar", "sofia", "sonny", "sophia", "sophie", "stanley", "stella", "teddy", "thea", "theo", "theodore", "thomas", "tilly", "toby", "tom", "tommy", "tyler", "valentina", "victoria", "vincent", "violet", "vivian", "wesley", "weston", "william", "willow", "wyatt", "xavier", "yusuf", "zachary", "zain", "zara", "zoe", "zoey"]
+);
 var TXT={bath:'Time for your bath!',bedtime:'Time for bed!',mealtime:'Time to eat!',outside:'Time to go outside!'};
 var BURST={bath:'BATH<br>TIME!',bedtime:'BED<br>TIME!',mealtime:'DINNER<br>TIME!',outside:'OUTSIDE<br>TIME!'};
 var $=function(i){return document.getElementById(i)};
-var total=3, routine='bath', left=0, start=0, raf=0, audio=new Audio();
+var total=3, routine='bath', left=0, start=0, raf=0, sib=false, picks=true, order=[], audio=new Audio(), queue=[], qid=0;
 audio.preload='auto';
+function key(n){return n.toLowerCase().normalize('NFD').replace(/[^a-z]/g,'')}
+function kids(){return [].slice.call(document.querySelectorAll('.kid')).map(function(i){return i.value.trim()}).filter(Boolean)}
+function join(a){return a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' and '+a[a.length-1]}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function playNext(id){if(id!==qid)return;var it=queue.shift();if(!it)return;
+ if(it.tts){try{var u=new SpeechSynthesisUtterance(it.tts);u.lang='en-GB';u.onend=function(){playNext(id)};u.onerror=function(){playNext(id)};speechSynthesis.speak(u)}catch(e){playNext(id)}return}
+ audio.onended=function(){playNext(id)};audio.onerror=function(){playNext(id)};audio.src=it.src;
+ try{var p=audio.play();if(p&&p.catch)p.catch(function(){})}catch(e){playNext(id)}}
+function speak(items){qid++;queue=items.slice();try{audio.pause()}catch(e){}try{speechSynthesis.cancel()}catch(e){}playNext(qid)}
+function nameItems(list){return list.map(function(n){var k=key(n);return NAMES.has(k)?{src:'voice/names/'+k+'.mp3'}:{tts:n}})}
+function who(){if(sib)return order;var n=$('name').value.trim();return n?[n]:[]}
+function say(el,text,clip,withName){var w=withName?who():[];$(el).textContent=w.length?join(w)+'! '+text:text;
+ var items=withName?nameItems(w):[];if(clip)items.push({src:'voice/'+clip+'.mp3'});speak(items)}
 function show(id){['s-setup','s-run','s-done'].forEach(function(s){$(s).classList.toggle('on',s===id)})}
-function say(el,text,clip){var n=$('name').value.trim();$(el).textContent=n?n+', '+text.charAt(0).toLowerCase()+text.slice(1):text;
- if(clip){try{audio.src='voice/'+clip+'.mp3';var p=audio.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}}
 function upd(){$('total').textContent=total;$('minus').disabled=total<=1;$('plus').disabled=total>=5}
 $('minus').onclick=function(){if(total>1)total--;upd()};
 $('plus').onclick=function(){if(total<5)total++;upd()};
+$('len').onclick=function(){var m=$('lenmsg');m.style.fontWeight='700';m.style.color='#1b1530';setTimeout(function(){m.style.fontWeight='';m.style.color=''},1800)};
+function tog(btn,on){btn.setAttribute('aria-pressed',String(on));btn.textContent=on?'ON':'OFF'}
+$('sibtog').onclick=function(){sib=!sib;tog(this,sib);$('namerow').classList.toggle('sibson',sib)};
+$('picktog').onclick=function(){picks=!picks;tog(this,picks)};
+$('addkid').onclick=function(){var n=document.querySelectorAll('.kid').length;if(n>=4)return;var i=document.createElement('input');i.className='kid';i.maxLength=20;i.placeholder='Child '+(n+1);i.setAttribute('aria-label','Child '+(n+1));this.parentNode.insertBefore(i,this);i.focus();if(n+1>=4)this.style.display='none'};
 document.querySelectorAll('#chips button').forEach(function(b){b.onclick=function(){routine=b.getAttribute('data-r');document.querySelectorAll('#chips button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))})}});
 function draw(){$('num').textContent=left;$('lbl').textContent=left===1?'LAST CARTOON!':'CARTOONS LEFT';$('phone').classList.toggle('last',left===1)}
 function tick(){var f=Math.min(1,(Date.now()-start)/CART);$('prog').style.width=(f*100)+'%';if(f>=1){next();return}raf=requestAnimationFrame(tick)}
 function next(){cancelAnimationFrame(raf);left--;
  if(left<=0){finish();return}
- draw();say('say',left===1?'This is your last cartoon!':W[left]+' cartoons left!','count_left_'+left);start=Date.now();raf=requestAnimationFrame(tick)}
-function finish(){$('phone').classList.remove('last');$('phone').classList.add('done');$('bursttxt').innerHTML=BURST[routine];show('s-done');say('say2',TXT[routine],'finish_'+routine)}
-$('play').onclick=function(){left=total;$('phone').classList.remove('done');show('s-run');draw();
- say('say',total===1?'One cartoon for you. Enjoy!':W[total]+' cartoons for you. Enjoy!','greet_count_'+total);
- if(left===1){$('say').textContent+=' It’s the last one.'}
- start=Date.now();raf=requestAnimationFrame(tick)};
+ draw();if(left===1)say('say','This is your last cartoon!','count_left_1',true);else say('say',W[left]+' cartoons left!','count_left_'+left,false);
+ start=Date.now();raf=requestAnimationFrame(tick)}
+function finish(){$('phone').classList.remove('last');$('phone').classList.add('done');$('bursttxt').innerHTML=BURST[routine];show('s-done');say('say2',TXT[routine],'finish_'+routine,true)}
+function begin(){$('pick').classList.remove('on');try{$('phone').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}left=total;$('phone').classList.remove('done');show('s-run');draw();
+ say('say',total===1?'One cartoon for you. Enjoy!':W[total]+' cartoons for you. Enjoy!','greet_count_'+total,true);
+ start=Date.now();raf=requestAnimationFrame(tick)}
+function pickWheel(){var k=kids();var chosen=k[Math.floor(Math.random()*k.length)];$('pick').classList.add('on');try{document.querySelector('.pickcard').scrollIntoView({behavior:'smooth',block:'center'})}catch(e){}$('pickplay').style.visibility='hidden';$('picktxt').innerHTML='&nbsp;';
+ /* unlock audio inside the tap so the later announcement can play on phones */
+ try{audio.src='voice/picks_tonight.mp3';audio.muted=true;var p=audio.play();if(p&&p.then)p.then(function(){audio.pause();audio.muted=false}).catch(function(){audio.muted=false})}catch(e){audio.muted=false}
+ var i=0,steps=14+Math.floor(Math.random()*k.length);(function spin(){$('wheel').textContent=k[i%k.length];i++;
+  if(i<steps){setTimeout(spin,60+i*12)}else{$('wheel').textContent=chosen;$('picktxt').textContent='It’s '+chosen+'’s pick! '+chosen+' chooses the cartoons tonight.';
+   audio.muted=false;speak(nameItems([chosen]).concat([{src:'voice/picks_tonight.mp3'}]));$('pickplay').style.visibility='visible'}})()}
+$('play').onclick=function(){
+ if(sib){var k=kids();if(k.length<2){$('note').textContent='Add at least two children for Siblings mode.';return}order=shuffle(k);
+  if(picks){pickWheel();return}}
+ begin()};
+$('pickplay').onclick=begin;
 $('skip').onclick=function(){next()};
-function reset(){cancelAnimationFrame(raf);try{audio.pause()}catch(e){}$('phone').classList.remove('last','done');show('s-setup')}
+function reset(){cancelAnimationFrame(raf);speak([]);$('pick').classList.remove('on');$('phone').classList.remove('last','done');show('s-setup')}
 $('stop').onclick=reset;$('again').onclick=reset;
 upd();
 })();
